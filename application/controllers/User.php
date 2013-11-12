@@ -9,6 +9,7 @@ class User extends CI_Controller {
 		$this->load->model('User_model');
 
 		$result = $this->User_model->get($username, $password);
-		var_dump($result);
+
+		echo json_encode($result);
 	}
 }
