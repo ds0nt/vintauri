@@ -10,4 +10,5 @@ var vintauri = {
 
 $(function() {
 	vintauri.init();
+	alert('initted');
 })
