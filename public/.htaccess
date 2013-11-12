@@ -1,0 +1,20 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^(home(/index)?|index(\.php)?)/?$ / [L,R=301]
+RewriteRule ^(.*)/index/?$ $1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ $1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+<IfModule mod_deflate.c>
+    # ETags don't play nicely with mod_deflate so turn them off
+    Header unset ETag
+    FileETag None
+</IfModule>
+
+AddDefaultCharset utf-8
