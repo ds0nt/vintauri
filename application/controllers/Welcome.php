@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('User_model');
-		echo 'Welcome Index';
+		$this->load->view('app.html');
 	}
 
 	public function about()
