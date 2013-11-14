@@ -37,7 +37,7 @@ class User_model extends CI_Model {
         $this->session->sess_destroy();
 
         $user = $this->db
-            ->query('SELECT EXISTS(SELECT user_id, username FROM users WHERE username = ? AND password = ? ', [$username, md5($password)])->row_array();
+            ->query('SELECT user_id, username FROM users WHERE username = ? AND password = ?', [$username, md5($password)])->row_array();
         if (!empty($user)) {
             $this->session->set_userdata($user);
             return $user['user_id'];

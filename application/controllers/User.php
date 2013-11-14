@@ -2,6 +2,28 @@
 
 class User extends CI_Controller {
 
+	public function login()
+	{
+		$username = $this->input->get('username');
+		$password = $this->input->get('password');
+
+		$this->load->model('User_model');
+
+		$loggedin = $this->User_model->login($username, $password);
+
+
+		if ($loggedin !== false) {
+			$result['success'] = true;
+			$result['debug_session'] = $this->session->all_userdata();
+			$result['user_id'] = $loggedin;
+		} else {
+			$result['success'] = false;
+			$result['error'] = $this->User_model->_last_error_msg;
+		}
+		echo json_encode($result);
+
+	}
+
 	//Create a new user
 	public function post() 
 	{

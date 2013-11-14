@@ -16,9 +16,43 @@ var navbar = {
 
 function login() {	
 	this.template = vintauri.getTemplate("/templates/login.html");
-	var v = $(this.template({}));
-	v.appendTo('#content');
+	var dom = $(this.template({}));
+	dom.appendTo('#content');
+
+	var self = this;
+	dom.find('.btn').click(function(){ self.login.call(self); });
 }
+login.prototype.login = function() {
+	$.get(
+		"/user/login",
+		{ username: this.username(), password: this.password() },
+		function(data) {
+			if (data.success) {
+				var curtains = document.getElementById('login-curtains');
+				curtains.style['-webkit-animation-play-state'] = 'running';
+				curtains.style.MozAnimationPlayState = 'running';
+				console.log(curtains.style);
+			}
+		},
+		"json")
+};
+login.prototype.username = function(val) {
+	var un = document.getElementById('login-username');
+	if (typeof val === 'undefined') {
+		return un.value;
+	} else {
+		un.value = val;
+	}
+}
+login.prototype.password = function(val) {
+	var un = document.getElementById('login-password');
+	if (typeof val === 'undefined') {
+		return un.value;
+	} else {
+		un.value = val;
+	}
+}
+
 
 var vintauri = {
 	init: function () {
