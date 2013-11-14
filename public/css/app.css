@@ -1,5 +1,9 @@
 @media only screen and (min-width: 959px) {
+        body {
+                background: black;
+        }
         #content {
+                margin: auto;
                 border: 1px solid #999;
                 width: 959px;
         }
@@ -21,3 +25,21 @@
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+.block-label {
+        font-weight: bold;
+        font-size: 16px;
+        width: 100%;
+        display: block;
+}
+
+.block-input {
+        width: 100%;
+        display: block;
+        height: 30px;
+}
+.btn {
+        background: none;
+        border: 1px solid black;
+        height: 30px;
+}

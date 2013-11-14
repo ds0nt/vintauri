@@ -1,16 +1,23 @@
 var home = {
-	
+	init: function() {
+		this.template = vintauri.getTemplate("/templates/home.html");
+		var v = $(this.template({}));		
+		$('#content').html(v);
+	}
+}
+
+var navbar = {
+	init: function() {
+		this.template = vintauri.getTemplate("/templates/nav-bar.html");
+		var v = $(this.template({}));		
+		$('#header').html(v);
+	}
 }
 
 function login() {	
 	this.template = vintauri.getTemplate("/templates/login.html");
-	$('#content').append(this.template({}));
-	$('#content').append(this.template({}));
-	$('#content').append(this.template({}));
-	$('#content').append(this.template({}));
-	$('#content').append(this.template({}));
-	$('#content').append(this.template({}));
-	$('#content').append(this.template({}));
+	var v = $(this.template({}));
+	v.appendTo('#content');
 }
 
 var vintauri = {
@@ -37,7 +44,6 @@ var vintauri = {
 			data:null,
 			success: function(data){
 				data = data;
-				console.log(data);
 				template = Handlebars.compile(data);
 			},
 			error: function(a, b, c){
@@ -54,5 +60,7 @@ var vintauri = {
 
 $(function() {
 	vintauri.init();
+	home.init();
+	navbar.init();
 	new login();
 })

@@ -1,6 +1,49 @@
 
-	<div class="login-control">
-		<input type="text" name="username">
-		<input type="password" name="password">
-		<button>Submit</button>
+<style type="text/css">
+	.login-control-box {
+		position: absolute;
+		text-align: center;
+		width: 479px;
+		margin: auto;
+	}
+	.login-control-content {
+		background: #CCC;
+		-moz-animation-duration: 0.4s;
+		-moz-animation-name: slidein;
+		-webkit-animation-duration: 0.4s;
+		-webkit-animation-name: slidein;		
+	}
+	.login-control [type="text"]{
+		display: block;
+	}
+	.login-control [type="password"]{
+		display: block;
+	}
+
+@-moz-keyframes slidein {
+	from {
+		margin-left: 100%;
+		margin-right: -100%;
+	}
+
+	to {
+	}
+}
+@-webkit-keyframes slidein {
+	from {
+		margin-left: 100%;
+		margin-right: -100%;
+	}
+
+	to {
+	}
+}
+</style>
+<div class="login-control-box">
+	<div class="login-control-content">
+		<input class="block-input" type="text" name="username" placeholder="Email">
+		
+		<input class="block-input" type="password" name="password" placeholder="Password">
+		<button class="btn">Submit</button>
 	</div>
+</div>
