@@ -8,7 +8,6 @@
 			right: 20%;
 			padding: 2.5px;
 			text-align: left;
-			z-index: 3;
 			margin: auto;
 		}		
 	}
@@ -53,11 +52,15 @@
 	}
 }
 
+div.curtains.animate {
+	-moz-animation-play-state: running !important;
+	-webkit-animation-play-state: running !important;
+}
 div.curtains {
-	-moz-animation-duration: 1.4s;
+	-moz-animation-duration: 0.4s;
 	-moz-animation-name: curtains;
 	-moz-animation-play-state: paused;
-	-webkit-animation-duration: 1.4s;
+	-webkit-animation-duration: 0.4s;
 	-webkit-animation-name: curtains;		
 	-webkit-animation-play-state: paused;
 	position: absolute;
@@ -65,9 +68,11 @@ div.curtains {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	z-index: 2;
+}
+div.curtains div.curtain-texture {
 	width: 100%;
 	height: 100%;
+	background-image: repeating-linear-gradient(to right,  #efc5ca 10px, #ba2737 60px, #d24b5a 40px, #efc5ca 90px); 
 }
 	@-moz-keyframes curtains {
 		from {
@@ -108,17 +113,19 @@ div.curtains {
 	}
 </style>
 <div id="login-curtains" class="curtains">
-	<div class="login-control-box">
-		<div class="login-control-content">
-			<div class="center-my-guts">
-				<h1>Vintauri</h1>
-			</div>
-			<div class="control-padding">
-				<input class="block-input" type="text" id="login-username" name="username" placeholder="Email">
-				
-				<input class="block-input" type="password" id="login-password" name="password" placeholder="Password">
+	<div class="curtain-texture">
+		<div class="login-control-box">
+			<div class="login-control-content">
 				<div class="center-my-guts">
-					<button class="btn">Submit</button>
+					<h1>Vintauri</h1>
+				</div>
+				<div class="control-padding">
+					<input class="block-input" type="text" id="login-username" name="username" placeholder="Email">
+					
+					<input class="block-input" type="password" id="login-password" name="password" placeholder="Password">
+					<div class="center-my-guts">
+						<button class="btn">Submit</button>
+					</div>
 				</div>
 			</div>
 		</div>

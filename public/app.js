@@ -15,24 +15,28 @@ var navbar = {
 }
 
 function login() {	
+
 	this.template = vintauri.getTemplate("/templates/login.html");
-	var dom = $(this.template({}));
-	dom.appendTo('#content');
+	this.$element = $(this.template({}));
+	this.$element.appendTo('#content');
 
 	var self = this;
-	dom.find('.btn').click(function(){ self.login.call(self); });
+	this.$element.find('.btn').click(function(){ self.login.call(self); });
 }
 login.prototype.login = function() {
+	var self = this;
+
 	$.get(
 		"/user/login",
 		{ username: this.username(), password: this.password() },
 		function(data) {
-			if (data.success) {
+			// if (data.success) {
 				var curtains = document.getElementById('login-curtains');
-				curtains.style['-webkit-animation-play-state'] = 'running';
-				curtains.style.MozAnimationPlayState = 'running';
-				console.log(curtains.style);
-			}
+				curtains.className += " animate";
+				curtains.addEventListener("animationend", function() { 
+					self.$element.remove();
+				}, false);
+			// }
 		},
 		"json")
 };
