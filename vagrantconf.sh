@@ -10,4 +10,5 @@ ln -sv /var/vintauri /var/www
 apachectl restart
 
 apt-get install postgresql-9.1 -y
+apt-get install php5-pgsql -y
 echo "ALTER USER postgres WITH password 'postgres';" | sudo -u postgres psql

@@ -80,12 +80,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
 	'password' => 'postgres',
-	'database' => 'vintauri',
-	'dbdriver' => 'postgres',
+	'database' => '',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => TRUE,
 	'db_debug' => TRUE,
