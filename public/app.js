@@ -1,8 +1,13 @@
 var home = {
+	_onLoad: function() {},
+	onLoad: function(fn) {
+		home._onLoad = fn;
+	},
 	init: function() {
 		this.template = vintauri.getTemplate("/templates/home.html");
-		var v = $(this.template({}));		
+		var v = $(this.template({}));
 		$('#content').html(v);
+		home._onLoad();
 	}
 }
 
@@ -13,12 +18,18 @@ var navbar = {
 		$('#header').html(v);
 	}
 }
+var footer = {
+	init: function() {
+		this.template = vintauri.getTemplate("/templates/footer.html");
+		var v = $(this.template({}));		
+		$('#footer').html(v);
+	}
+}
 
-function login() {	
-
+function login() {
 	this.template = vintauri.getTemplate("/templates/login.html");
 	this.$element = $(this.template({}));
-	this.$element.appendTo('#content');
+	this.$element.appendTo('body');
 
 	var self = this;
 	this.$element.find('.btn').click(function(){ self.login.call(self); });
@@ -31,15 +42,26 @@ login.prototype.login = function() {
 		{ username: this.username(), password: this.password() },
 		function(data) {
 			// if (data.success) {
-				var curtains = document.getElementById('login-curtains');
-				curtains.className += " animate";
-				curtains.addEventListener("animationend", function() { 
-					self.$element.remove();
-				}, false);
+
+				home.onLoad(function() {
+					self.openCurtains();
+				});
+				home.init();
+
 			// }
 		},
-		"json")
+	"json");
 };
+login.prototype.openCurtains = function() {
+	var curtains = document.getElementById('login-curtains');
+	curtains.className = "curtains running";
+	var self = this;
+	curtains.addEventListener("animationend", function() { 
+		self.$element.remove();
+	}, false);
+};
+
+
 login.prototype.username = function(val) {
 	var un = document.getElementById('login-username');
 	if (typeof val === 'undefined') {
@@ -55,8 +77,7 @@ login.prototype.password = function(val) {
 	} else {
 		un.value = val;
 	}
-}
-
+};
 
 var vintauri = {
 	init: function () {
@@ -98,7 +119,7 @@ var vintauri = {
 
 $(function() {
 	vintauri.init();
-	home.init();
 	navbar.init();
+	footer.init();
 	new login();
 })

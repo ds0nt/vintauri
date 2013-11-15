@@ -1,0 +1,243 @@
+
+
+$darkest: #475F77;
+$darkest-tone: #354B5E;
+$darkest-primary: #DCDDD8;
+$lightest: #DCDDD8;
+$lightest-tone: #ACADA8;
+$lightest-primary: #D74B4B;
+
+$phone-tiny-max: 229px;
+$phone-sm-max: 480px;
+$phone-lg-max: 767px;
+$tablet-max: 959px;
+
+@mixin respond-to($media) {
+  @if $media == tiny {
+    @media only screen and (max-width: $phone-tiny-max) { @content; }
+  }
+  @else if $media == small {
+    @media only screen and (min-width: $phone-tiny-max + 1) and (max-width: $phone-sm-max) { @content; }
+  }
+  @else if $media == medium {
+    @media only screen and (min-width: $phone-sm-max + 1) and (max-width: $phone-lg-max) { @content; }
+  }
+  @else if $media == tablet {
+    @media only screen and (min-width: $phone-lg-max + 1) and (max-width: $tablet-max) { @content; }
+  }
+  @else if $media == pc {
+    @media only screen and (min-width: $tablet-max + 1) { @content; }
+  }
+}
+
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+@mixin animation ($delay, $duration, $animation) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+}
+
+body {
+    background: $darkest-tone;
+	color: $lightest-primary;
+	font-family: verdana;
+}
+
+div#header {
+	color: $darkest-primary;
+	margin-bottom: 5px;
+	border: 1px #222 solid;
+	background: $darkest;
+
+	@include respond-to(pc) {
+	    margin: auto;
+	    border: 1px solid $darkest-tone;
+	    width: 959px;
+	}
+
+	.nav-bar {
+		padding: 2px 10px;
+	}
+}
+
+div#content {
+    background: $lightest;
+	color: $lightest-primary;
+
+	@include respond-to(pc) {
+	    margin: auto;
+	    border: 1px solid #999;
+	    width: 959px;
+	}
+}
+
+
+div#footer {
+	background: $darkest;	
+	color: $darkest-primary;
+	@include respond-to(pc) {
+	    margin: auto;
+	    width: 959px;
+	}
+	.foot-bar {
+		padding: 2px 10px;
+	}
+}
+
+div.home-page {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 40px;
+	input {
+		border: 2px solid $lightest-tone;
+		height: 30px;
+		width: 200px;
+		margin-top: 10px;
+	}
+}
+
+
+.btn {
+	color: $lightest-primary;
+}
+
+
+.block-label {
+        font-weight: bold;
+        font-size: 16px;
+        width: 100%;
+        display: block;
+}
+
+.block-input {
+        width: 100%;
+        display: block;
+        height: 30px;
+        margin: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: dashed 1px #999;
+}
+.btn {
+        background: none;
+        border: 1px solid black;
+        height: 30px;
+}
+.control-padding {
+        padding: 5px;
+}
+.center-my-guts {
+        width: 100%;
+        text-align: center;
+}
+
+
+
+
+div#login-curtains {
+	.login-control-box {
+		position: absolute;
+		top: 30%;
+		padding: 2.5px;
+		text-align: left;
+		margin: auto;
+		left: 0;
+		right: 0;
+		@include respond-to(pc) {
+			left: 30%;
+			right: 30%;
+		}
+		@include respond-to(tablet) {
+			left: 20%;
+			right: 20%;
+		}
+	}			
+}
+
+
+.login-control-content {
+	background: white;
+	border: 1px dashed #CCC;
+	@include animation(0, 0.4s, slidein);	
+}
+
+@include keyframes(slidein) {
+	from {
+		margin-bottom: 200%;
+		margin-top: -200%;
+	}
+
+	to {
+	}
+}
+
+.running {
+	-moz-animation-play-state: running;
+	-webkit-animation-play-state: running;
+}
+
+.paused {	
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+}
+
+div.curtains {
+	@include animation(0, 0.8s, curtains);
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: $darkest-tone;
+}
+div.curtains div.curtain-texture {
+	width: 100%;
+	height: 100%;
+}
+@include keyframes (curtains) {
+	from {
+
+	}
+	5% {
+	}
+	80% {
+		bottom: 100%;
+		top: -100%;
+	}
+	to {
+		bottom: 100%;
+		top: -100%;
+	}
+}
