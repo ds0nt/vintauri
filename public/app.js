@@ -81,9 +81,6 @@ login.prototype.password = function(val) {
 
 var vintauri = {
 	init: function () {
-		$.get('/user/get', {}, function(data) {
-
-		}, "json");
 		return 1;
 	},
 	templates : {},
