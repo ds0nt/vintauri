@@ -1,0 +1,18 @@
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Link</th>
+			<th>Tags</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each resources}}
+		<tr>
+			<td>{{title}}</td>
+			<td><a href="{{url}}">{{url}}</a></td>
+			<td>{{#each tags}}<span class="tag" data-tag-id="{{tag_id}}">{{tag}}</span>{{/each}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>

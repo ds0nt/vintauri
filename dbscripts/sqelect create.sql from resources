@@ -1,0 +1,11 @@
+ resource_id |   title   |                      url                       |        date_created        
+-------------+-----------+------------------------------------------------+----------------------------
+           1 | abcd      | http://vintauri.net                            | 2013-11-16 22:11:49.945838
+           2 | abcd2     | http://vintauri.net2                           | 2013-11-16 22:12:54.880718
+           3 | abcd22    | http://vintauri.net22                          | 2013-11-16 22:13:31.218316
+           4 | abcd222   | http://vintauri.net222                         | 2013-11-16 22:14:08.580263
+           5 | abcd2222  | http://vintauri.net2222                        | 2013-11-16 22:14:25.112326
+           6 | abcd22223 | http://vintauri.net22223                       | 2013-11-16 22:32:48.781618
+           8 | a         | https://mail.google.com/mail/u/0/?shva=1#inbox | 2013-11-16 23:08:02.492382
+(7 rows)
+

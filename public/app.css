@@ -15,6 +15,17 @@ div#header {
       width: 959px; } }
   div#header .nav-bar {
     padding: 2px 10px; }
+    div#header .nav-bar h1 {
+      float: left;
+      width: 50%; }
+    div#header .nav-bar button {
+      line-height: 40px;
+      margin: 21px 0;
+      height: 40px;
+      float: right;
+      color: #dcddd8;
+      border: 1px #dcddd8 solid;
+      background: none; }
 
 div#content {
   background: #dcddd8;
@@ -46,7 +57,10 @@ div.home-page {
     margin-top: 10px; }
 
 .btn {
-  color: #d74b4b; }
+  color: #d74b4b;
+  background: none;
+  border: 1px solid black;
+  height: 30px; }
 
 .block-label {
   font-weight: bold;
@@ -64,17 +78,15 @@ div.home-page {
   border-top: none;
   border-bottom: dashed 1px #999; }
 
-.btn {
-  background: none;
-  border: 1px solid black;
-  height: 30px; }
-
 .control-padding {
   padding: 5px; }
 
 .center-my-guts {
   width: 100%;
   text-align: center; }
+
+.clearme {
+  clear: both; }
 
 div#login-curtains .login-control-box {
   position: absolute;
