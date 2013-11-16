@@ -100,22 +100,14 @@ div#login-curtains .login-control-box {
   -webkit-animation-duration: 0.4s;
   -webkit-animation-name: slidein;
   -webkit-animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
   -moz-animation-delay: 0;
   -moz-animation-duration: 0.4s;
   -moz-animation-name: slidein;
   -moz-animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
-  -o-animation-delay: 0;
-  -o-animation-duration: 0.4s;
-  -o-animation-name: slidein;
-  -o-animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
   animation-delay: 0;
   animation-duration: 0.4s;
   animation-name: slidein;
-  animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */ }
+  animation-fill-mode: forwards; }
 
 @-webkit-keyframes slidein {
   from {
@@ -139,33 +131,27 @@ div#login-curtains .login-control-box {
 
 .running {
   -moz-animation-play-state: running;
-  -webkit-animation-play-state: running; }
+  -webkit-animation-play-state: running;
+  animation-play-state: running; }
 
 .paused {
   -webkit-animation-play-state: paused;
-  -moz-animation-play-state: paused; }
+  -moz-animation-play-state: paused;
+  animation-play-state: paused; }
 
 div.curtains {
   -webkit-animation-delay: 0;
   -webkit-animation-duration: 0.8s;
   -webkit-animation-name: curtains;
   -webkit-animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
   -moz-animation-delay: 0;
   -moz-animation-duration: 0.8s;
   -moz-animation-name: curtains;
   -moz-animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
-  -o-animation-delay: 0;
-  -o-animation-duration: 0.8s;
-  -o-animation-name: curtains;
-  -o-animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
   animation-delay: 0;
   animation-duration: 0.8s;
   animation-name: curtains;
   animation-fill-mode: forwards;
-  /* this prevents the animation from restarting! */
   position: absolute;
   top: 0;
   bottom: 0;
