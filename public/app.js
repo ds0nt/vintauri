@@ -42,7 +42,6 @@ login.prototype.login = function() {
 		{ username: this.username(), password: this.password() },
 		function(data) {
 			// if (data.success) {
-
 				home.onLoad(function() {
 					self.openCurtains();
 				});
@@ -53,15 +52,20 @@ login.prototype.login = function() {
 	"json");
 };
 login.prototype.openCurtains = function() {
+	console.log('test');
+	console.log(util.animations);
+	console.log(util._animationPrefix);
 	var curtains = document.getElementById('login-curtains');
-	curtains.className = "curtains running";
 	var self = this;
-	curtains.addEventListener("animationend", function() { 
+	if (util.animations) {		
+		curtains.className = "curtains running";
+		curtains.addEventListener(util.animationEnd, function() { 
+			self.$element.remove();
+		}, false);
+	} else {
 		self.$element.remove();
-	}, false);
+	}
 };
-
-
 login.prototype.username = function(val) {
 	var un = document.getElementById('login-username');
 	if (typeof val === 'undefined') {
@@ -76,6 +80,22 @@ login.prototype.password = function(val) {
 		return un.value;
 	} else {
 		un.value = val;
+	}
+};
+
+var util = {
+	_animationPrefix: (function() {
+    	var vendors = ['webkit', 'Moz', 'o', 'ms', ''];
+    	for (var i = vendors.length - 1; i >= 0; i--) {
+    		if( document.body.style[ vendors[i] + 'AnimationName' ] !== undefined ) {
+    			return vendors[i];
+    		};
+    	}
+        return false;
+    })(),
+	resolveBrowser: function() {
+		util.animations = util._animationPrefix !== false;
+		util.animationEnd = util._animationPrefix + 'animationend';
 	}
 };
 
@@ -115,6 +135,7 @@ var vintauri = {
 }
 
 $(function() {
+	util.resolveBrowser();
 	vintauri.init();
 	navbar.init();
 	footer.init();
