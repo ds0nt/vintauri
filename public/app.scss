@@ -148,7 +148,29 @@ div.home-page {
     border: 1px solid black;
     height: 30px;
 }
+#alerts {
+	position: absolute;
+	z-index: 5000;	
+	bottom: 0;
+	left: 0;
+	right: 0;
+	line-height: 30px;
+	padding-top: 1px;
+	@include respond-to(pc) {
+		bottom: auto;
+		top: 0;
+		left: 20%;
+		right: 20%;
+	}
 
+	.vintauri-alert {
+		border: 1px solid #AAA;
+		border-top: 0;
+		background: white;
+		text-align: center;
+		@include animation(1s, 0.5s, fadeout)
+	}
+}
 
 .block-label {
         font-weight: bold;
@@ -214,6 +236,14 @@ div#login-curtains {
 	}
 
 	to {
+	}
+}
+@include keyframes(fadeout) {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
 	}
 }
 

@@ -51,7 +51,7 @@ class User_model extends CI_Model {
     public function create($username, $password) 
     {
         $existing_user = $this->db
-            ->query('SELECT user_id FROM users WHERE username = ?', $username)
+            ->query('SELECT user_id FROM users WHERE username = ?', [$username])
             ->row_array();
             
         if (!empty($existing_user)) {
@@ -63,7 +63,6 @@ class User_model extends CI_Model {
             ->set(['username' => $username, 'password' => md5($password)])
             ->insert('users');
         
-        var_dump($result);
         return $result;
     }
 

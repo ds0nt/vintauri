@@ -1,4 +1,3 @@
-
 var util = {
 	_animationPrefix: (function() {
     	var vendors = ['webkit', 'Moz', 'o', 'ms', ''];
@@ -21,8 +20,8 @@ var util = {
 };
 
 var vintauri = {
+	user: null,
 	init: function () {
-		return 1;
 	},
 	templates : {},
 	getTemplate: function(path) {
@@ -52,5 +51,61 @@ var vintauri = {
 		});	
 
 		return template;
+	},
+	alert: function(error) {
+		var elem = document.createElement('div');
+		elem.innerHTML = vintauri.getTemplate("/templates/alert.html")({error: error});
+		var alerts = document.getElementById('alerts');
+		alerts.appendChild(elem);
+		setTimeout(function() { 
+			alerts.children[0].remove();
+		}, 1500);
 	}
 }
+vintauri.models = {
+	parse: function(treestart, model) {
+
+		if (typeof treestart === 'undefined') 
+			return;
+		
+		var field = treestart.getAttribute('data-model-field');
+
+		if (treestart.getAttribute('data-model'))
+			model = treestart.getAttribute('data-model');
+
+		if (field) {
+			if (typeof vintauri.models[model] === 'undefined')
+				vintauri.models[model] = new vintauri.model(model, {});
+			vintauri.models[model].addField(field, treestart['vintauri-ui']);
+		}
+
+		for (var i = treestart.children.length - 1; i >= 0; i--) {
+			vintauri.models.parse(treestart.children[i], model);
+		}
+	}
+};
+
+vintauri.model = function(name, fields) {
+	this.name = name;
+	this.fields = fields;
+	this.projection = {};
+}
+vintauri.model.prototype.addField = function(field, control) {
+	this.fields[field] = control.val();
+	this.bindFieldToControl(field, control);
+}
+vintauri.model.prototype.bindFieldToControl = function(field, control) {
+	this.projection[field] = control;
+	var self = this;
+	control.onValueChanged(function(value) {
+		self.fields[field] = value;
+		console.log(vintauri.models);
+	});
+}
+vintauri.model.prototype.set = function(field, value) {
+	if (typeof this.projection[field] !== 'undefined') {
+		this.projection[field].setValue(value);
+	}
+};
+
+

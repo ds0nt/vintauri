@@ -39,24 +39,45 @@ function login() {
 	this.template = vintauri.getTemplate("/templates/login.html");
 	this.$element = $(this.template({}));
 	this.$element.appendTo('body');
-
+	this.uielems = vintauri.ui.parse(document.body);		
 	var self = this;
-	this.$element.find('.btn').click(function(){ self.login.call(self); });
+	this.uielems['login'].control.onClick(function() {
+		self.login.call(self);
+	});
+	this.uielems['register'].control.onClick(function() {
+		self.register.call(self);
+	});
+	vintauri.models.parse(document.body);
 }
 login.prototype.login = function() {
 	var self = this;
 
 	$.get(
-		"/user/login",
-		{ username: this.username(), password: this.password() },
+		"/user/login", vintauri.models.login.fields,
 		function(data) {
-			// if (data.success) {
+			if (data.success) {
+				vintauri.models.user = new vintauri.model(data.user);
+
 				home.onLoad(function() {
 					self.openCurtains();
 				});
 				home.init();
-
-			// }
+			} else {
+				vintauri.alert(data.error);				
+			}
+		},
+	"json");
+};
+login.prototype.register = function() {
+	var self = this;
+	$.post(
+		"/user/post", vintauri.models.login.fields,
+		function(data) {
+			if (data.success) {
+				self.login.call(self);
+			} else {
+				vintauri.alert(data.error);
+			}
 		},
 	"json");
 };
@@ -70,22 +91,6 @@ login.prototype.openCurtains = function() {
 		}, false);
 	} else {
 		self.$element.remove();
-	}
-};
-login.prototype.username = function(val) {
-	var un = document.getElementById('login-username');
-	if (typeof val === 'undefined') {
-		return un.value;
-	} else {
-		un.value = val;
-	}
-}
-login.prototype.password = function(val) {
-	var un = document.getElementById('login-password');
-	if (typeof val === 'undefined') {
-		return un.value;
-	} else {
-		un.value = val;
 	}
 };
 

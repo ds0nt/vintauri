@@ -6,12 +6,13 @@
 				<div class="center-my-guts">
 					<h1>Vintauri</h1>
 				</div>
-				<div class="control-padding">
-					<input class="block-input" type="text" id="login-username" name="username" placeholder="Email">
-					
-					<input class="block-input" type="password" id="login-password" name="password" placeholder="Password">
+				<div class="control-padding" data-model="login">
+					<input data-model-field="username" data-ui-control="text" data-ui-name="username" class="block-input" type="text" placeholder="Email">			
+
+					<input data-model-field="password" data-ui-control="text" data-ui-name="password" class="block-input" type="password" placeholder="Password">
 					<div class="center-my-guts">
-						<button class="btn">Submit</button>
+						{{#button "login"}}Login{{/button}}
+						{{#button "register"}}Register{{/button}}
 					</div>
 				</div>
 			</div>
